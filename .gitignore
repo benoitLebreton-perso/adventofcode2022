@@ -1,0 +1,6 @@
+.vscode/
+.venv/
+.pytest_cache/
+adventofcode.egg-info
+__pycache__/
+.coverage
