@@ -1,20 +1,38 @@
 import pytest
 
+# from queue import SimpleQueue
 
-pytest.fixture()
-def mock_input_calories_by_elves():
-    input_ = """1000
-    2000
-    3000
 
-    4000
+@pytest.fixture()
+def begin_crates_schema():
+    """
+    output :
+        [D]
+    [N] [C]
+    [Z] [M] [P]
+    1   2   3
+    """
 
-    5000
-    6000
+    stack_1 = []
+    stack_1.append("Z")
+    stack_1.append("N")
 
-    7000
-    8000
-    9000
+    stack_2 = []
+    stack_2.append("M")
+    stack_2.append("C")
+    stack_2.append("D")
 
-    10000"""
-    return input_
+    stack_3 = []
+    stack_3.append("P")
+    return stack_1, stack_2, stack_3
+
+
+@pytest.fixture()
+def moves():
+    moves_ = [
+        "move 1 from 2 to 1",
+        "move 3 from 1 to 3",
+        "move 2 from 2 to 1",
+        "move 1 from 1 to 2",
+    ]
+    return moves_
