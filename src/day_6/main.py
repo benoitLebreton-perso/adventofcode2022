@@ -2,11 +2,25 @@ import re
 
 
 def find_packet(pat, chain):
+    """
+    we find the 4-char pattern and finally 
+    the next char is the one we are looking for
+    """
     match = re.search(pat, chain)
     return match.end() + 1
 
 
 def generate_packet_regex(length):
+    """
+    Thanks to backref and negative lookahead
+    Example for 2-length pattern : 
+    (\w)(?!\1)
+    For 3-length pattern : 
+    (\w)(?!\1)(\w)(?!\1|\2)
+    And for 4-length pattern : 
+    (\w)(?!\1)(\w)(?!\1|\2)(\w)(?!\1|\2|\3)
+
+    """
     regex = ""
     negative_group = []
     for i in range(1, length):
