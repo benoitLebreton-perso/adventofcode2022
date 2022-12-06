@@ -3,7 +3,7 @@ import re
 
 def find_packet(pat, chain):
     match = re.search(pat, chain)
-    return match.end() + 1
+    return match.end()
 
 
 def generate_packet_regex(length):
@@ -14,7 +14,7 @@ def generate_packet_regex(length):
         negative_pat = "|".join(negative_group)
         pat = r"(\w)(?!{})".format(negative_pat)
         regex = regex + pat
-    return regex
+    return regex + "\w"
 
 
 def main():
