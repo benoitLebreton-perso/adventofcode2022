@@ -1,24 +1,33 @@
 import re
 
 
-def find_packet(pat, chain):
-    """
-    we find the n-char pattern and finally 
-    the next char is the one we are looking for
-    """
+def find_packet(pat: str, chain: str) -> int:
     match = re.search(pat, chain)
     return match.end()
 
 
-def generate_packet_regex(length):
+def generate_packet_regex(length: int) -> str:
     """
-    Thanks to backref and negative lookahead
-    Example for 2-length pattern : 
+    Generate the regex depending on the length of the pattern
+    Thanks to backref and negative lookahead.
+    Example for 2-length pattern :
     (\w)(?!\1)
-    For 3-length pattern : 
+    For 3-length pattern :
     (\w)(?!\1)(\w)(?!\1|\2)
-    And for 4-length pattern : 
+    And for 4-length pattern :
     (\w)(?!\1)(\w)(?!\1|\2)(\w)(?!\1|\2|\3)
+
+    And we add a last \w at the end because we want the next letter
+    AFTER the n-letter pattern
+    Parameters
+    ----------
+    length : int
+        length of the pattern (4 or 14 in the code challenge)
+
+    Returns
+    -------
+    str
+        regex that will find the pattern + the next letter
     """
     regex = ""
     negative_group = []
