@@ -3,7 +3,7 @@ import re
 
 def find_packet(pat, chain):
     """
-    we find the 4-char pattern and finally 
+    we find the n-char pattern and finally 
     the next char is the one we are looking for
     """
     match = re.search(pat, chain)
@@ -19,7 +19,6 @@ def generate_packet_regex(length):
     (\w)(?!\1)(\w)(?!\1|\2)
     And for 4-length pattern : 
     (\w)(?!\1)(\w)(?!\1|\2)(\w)(?!\1|\2|\3)
-
     """
     regex = ""
     negative_group = []
@@ -34,6 +33,7 @@ def generate_packet_regex(length):
 def main():
     with open("src/day_6/input.txt", "r") as f:
         chain = f.read()
+    # pattern = generate_packet_regex(4)
     pattern = generate_packet_regex(14)
     begin_pattern = find_packet(pattern, chain)
     print(begin_pattern)
