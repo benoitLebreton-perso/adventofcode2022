@@ -1,5 +1,5 @@
 import pytest
-from src.day_9.main import find_visible_trees, best_spot_score
+from src.day_8.main import find_visible_trees, best_spot_score
 
 
 def test_find_visible_trees():
